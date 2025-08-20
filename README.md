@@ -13,10 +13,13 @@ Nome da equipe: Wellington Grein
     * Funcionalidade 5 Relatório de vendas
     * Funcionalidade 6 Favoritar produtos
       
-* Nome do sistema Ex:(Sistema para Mecânica)
-    * Funcionalidade 1 Cadastrar dados do Cliente
-    * Funcionalidade 2 Cadastrar veículos
-    * Funcionalidade 3
-
+## Histórias de usuário
+   * Eu como usuario, gostaria de fazer login no site
+   * Eu como usuario, gostaria de adicionar um item ao carrinho
+   * Eu como usuario, gostaria de favoritar um item
+   * Eu como usuario, gostaria de realizar o cadastro de itens
+   * Eu como usuario gostaria de um relatório de vendas
+     
+   
 
 
