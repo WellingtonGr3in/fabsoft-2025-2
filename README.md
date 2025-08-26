@@ -5,6 +5,8 @@ Curso de Engenharia de Software
 Nome da equipe: Wellington Grein
 # Propostas de projeto
 
+*Site de Venda de Lanches
+
 * RF01 - Cadastro de Usuário
 * RF02 - Login e Autenticação
 * RF03 - Cadastro de Produtos
