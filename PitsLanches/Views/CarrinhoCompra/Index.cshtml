@@ -1,0 +1,47 @@
+﻿@model CarrinhoCompraViewModel
+
+<div class="secao-destaque" style="padding: 2rem 0;">
+    <div class="container text-center">
+        <h2 class="titulo-secao" style="font-size: 2.5rem;">Meu Carrinho</h2>
+        <div class="divisor-titulo"></div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="carrinho-container">
+
+        <div class="carrinho-lista-items">
+            @foreach (var item in Model.CarrinhoCompra.CarrinhoCompraItems)
+            {
+                <div class="carrinho-item">
+                    <img src="@item.Lanche.ImagemURL" alt="@item.Lanche.Nome" class="carrinho-item-img" />
+                    <div class="carrinho-item-info">
+                        <h5>@item.Lanche.Nome</h5>
+                        <p>@item.Quantidade x @item.Lanche.Preco.ToString("c")</p>
+                    </div>
+                    <div class="carrinho-item-preco">
+                        @((item.Quantidade * item.Lanche.Preco).ToString("c"))
+                    </div>
+                    <a asp-controller="CarrinhoCompra" asp-action="RemovrItemDoCarrinhoCompra"
+                       asp-route-lancheId="@item.Lanche.LancheId" class="carrinho-item-remover" title="Remover Item">
+                        <i class="bi bi-trash-fill"></i>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <div class="carrinho-resumo">
+            <h4>Resumo do Pedido</h4>
+            <hr />
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="h5">Total</span>
+                <span class="carrinho-total">@Model.CarrinhoCompraTotal.ToString("c")</span>
+            </div>
+            <div class="d-grid gap-2">
+                <a class="btn btn-success btn-lg" asp-controller="Pedido" asp-action="Checkout">Finalizar Compra</a>
+                <a class="btn btn-outline-primary" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+            </div>
+        </div>
+
+    </div>
+</div>

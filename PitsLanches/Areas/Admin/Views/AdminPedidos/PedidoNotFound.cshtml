@@ -1,0 +1,23 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Pedido Não Encontrado";
+}
+
+<div class="admin-page-header">
+    <h1>Ops! Pedido não encontrado</h1>
+</div>
+
+<div class="admin-content-card">
+    <div class="admin-empty-state">
+        <i class="bi bi-search text-warning"></i>
+        <h4 class="mt-4">Erro 404 - Não Encontrado</h4>
+        <p class="lead text-muted">
+            O pedido com o ID <strong>@Model</strong> não foi encontrado em nosso sistema.
+        </p>
+        <hr class="my-4">
+        <a asp-action="Index" asp-controller="AdminPedidos" class="btn btn-primary btn-lg">
+            <i class="bi bi-arrow-left-circle me-2"></i>
+            Voltar para a Lista de Pedidos
+        </a>
+    </div>
+</div>

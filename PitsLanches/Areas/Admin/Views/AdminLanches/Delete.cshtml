@@ -1,0 +1,44 @@
+﻿@model PitsLanches.Models.Lanche
+@{
+    ViewData["Title"] = "Deletar Lanche";
+}
+
+<div class="admin-page-header">
+    <h1>Deletar Lanche</h1>
+</div>
+
+<div class="admin-content-card">
+    <div class="text-center">
+        <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size: 4rem;"></i>
+        <h3 class="mt-3">Confirmação de Exclusão</h3>
+        <p class="lead">Você tem certeza que deseja deletar permanentemente o lanche abaixo?</p>
+    </div>
+
+    <hr />
+
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-4">
+            <img src="@Model.ImagemURL" class="admin-image-preview mb-3" alt="Imagem do Lanche" />
+        </div>
+        <div class="col-md-6">
+            <dl class="row">
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Nome)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Nome)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Categoria)</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Categoria.CategoriaNome)</dd>
+
+                <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Preco)</dt>
+                <dd class="col-sm-8">@Model.Preco.ToString("c")</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="admin-form-actions justify-content-center">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="LancheId" />
+            <input type="submit" value="Sim, Deletar Permanentemente" class="btn btn-danger btn-lg" />
+            <a asp-action="Index" class="btn btn-secondary btn-lg">Cancelar</a>
+        </form>
+    </div>
+</div>

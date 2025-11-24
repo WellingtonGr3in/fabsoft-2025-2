@@ -1,0 +1,49 @@
+﻿@model Pedido
+
+<div class="container my-5">
+    <div class="pedido-confirmacao-card">
+
+        <div class="confirmacao-icon">
+            <i class="bi bi-check-circle-fill"></i>
+        </div>
+
+        <h2 class="confirmacao-mensagem">@ViewBag.CheckoutCompletoMensagem</h2>
+
+        <div class="pedido-info-bloco">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>Cliente:</strong> @Model.Nome</p>
+                    <p class="mb-0"><strong>Data:</strong> @Model.PedidoEnviado.ToString("dd/MM/yyyy HH:mm")</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-0"><strong>Número do Pedido:</strong> #@Model.PedidoId</p>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="text-left mb-3">Resumo dos Itens</h4>
+
+        @foreach (var item in Model.PedidoItens)
+        {
+            <div class="pedido-item-resumo">
+                <img src="@item.Lanche.ImagemURL" width="50" height="50" />
+                <div class="info">
+                    <strong>@item.Lanche.Nome</strong>
+                    <div class="text-muted small">Quantidade: @item.Quantidade</div>
+                </div>
+                <div class="preco">
+                    @item.Lanche.Preco.ToString("c")
+                </div>
+            </div>
+        }
+
+        <div class="pedido-total-final">
+            Valor Total: <span>@(((decimal)ViewBag.TotalPedido).ToString("C2"))</span>
+        </div>
+
+        <hr class="my-4">
+
+        <a class="btn btn-primary btn-lg" asp-controller="Home" asp-action="Index">Voltar à Página Inicial</a>
+
+    </div>
+</div>

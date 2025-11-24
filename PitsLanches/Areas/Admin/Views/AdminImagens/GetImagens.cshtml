@@ -1,0 +1,51 @@
+﻿@using LanchesMac.Models
+@model FileManagerModel
+@{
+    ViewData["Title"] = "Galeria de Imagens";
+}
+
+<div class="admin-page-header">
+    <h1>Galeria de Imagens</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left-circle me-2"></i> Voltar
+    </a>
+</div>
+
+<div class="admin-content-card">
+    @if (Model.Files != null && Model.Files.Any())
+    {
+        var caminho = Model.PathImagesProduto;
+        <div class="admin-gallery-container">
+            @foreach (FileInfo file in Model.Files)
+            {
+                <div class="gallery-card">
+                    <img src="~/@caminho/@file.Name" class="gallery-card-image" asp-append-version="true">
+                    <div class="gallery-card-footer">
+                        <p class="gallery-card-name" title="@file.Name">@file.Name</p>
+                        <div class="d-grid">
+                            <a href="@Url.Action("Deletefile", "AdminImagens", new { fname = file.Name })" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-trash-fill me-1"></i> Deletar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="admin-empty-state">
+            <i class="bi bi-folder-x"></i>
+            <h4>Nenhuma Imagem Encontrada</h4>
+            <p class="text-muted">A pasta de imagens está vazia. Envie novos arquivos para visualizá-los aqui.</p>
+        </div>
+    }
+
+    @if (ViewData["Erro"] != null)
+    {
+        <div class="alert alert-danger mt-4">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            @ViewData["Erro"]
+        </div>
+    }
+</div>

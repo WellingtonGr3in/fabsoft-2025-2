@@ -1,0 +1,37 @@
+﻿@model LoginViewModel
+
+<div class="login-container">
+
+    <div class="login-image-side">
+    </div>
+
+    <div class="login-form-side">
+        <div class="login-card">
+            <h2>Crie sua Conta</h2>
+            <form asp-controller="Account" asp-action="Register" method="post" role="form">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">Nome de Usuário</label>
+                    <input asp-for="UserName" class="form-control" placeholder="Informe seu e-mail" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Password" class="form-label">Senha</label>
+                    <input asp-for="Password" class="form-control" placeholder="Crie uma senha" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid">
+                    <input type="submit" class="btn btn-primary btn-lg" value="Registrar" />
+                </div>
+
+                <div class="link-cadastro">
+                    <p>Já tem uma conta? <a asp-controller="Account" asp-action="Login">Faça Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

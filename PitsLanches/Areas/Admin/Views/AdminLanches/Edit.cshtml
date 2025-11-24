@@ -1,0 +1,78 @@
+﻿@model PitsLanches.Models.Lanche
+@{
+    ViewData["Title"] = "Editar Lanche";
+}
+
+<div class="admin-page-header">
+    <h1>Editar Lanche</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left-circle me-2"></i> Voltar para a Lista
+    </a>
+</div>
+
+<div class="admin-content-card">
+    <form asp-action="Edit" class="admin-form" role="form">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="LancheId" />
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="mb-3">
+                    <label asp-for="Nome" class="form-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DescricaoCurta" class="form-label"></label>
+                    <textarea asp-for="DescricaoCurta" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="DescricaoCurta" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DescricaoDetalhada" class="form-label"></label>
+                    <textarea asp-for="DescricaoDetalhada" class="form-control" rows="5"></textarea>
+                    <span asp-validation-for="DescricaoDetalhada" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Preco" class="form-label"></label>
+                    <input asp-for="Preco" class="form-control" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="mb-3">
+                    <label asp-for="ImagemURL" class="form-label"></label>
+                    <input asp-for="ImagemURL" class="form-control" />
+                    <span asp-validation-for="ImagemURL" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ImagemThumvnailUrl" class="form-label"></label>
+                    <input asp-for="ImagemThumvnailUrl" class="form-control" />
+                    <span asp-validation-for="ImagemThumvnailUrl" class="text-danger"></span>
+                </div>
+                <img src="@Model.ImagemURL" class="admin-image-preview" alt="Preview da Imagem do Lanche" />
+
+                <div class="admin-settings-box">
+                    <div class="mb-3">
+                        <label asp-for="CategoriaId" class="form-label"></label>
+                        <select asp-for="CategoriaId" class="form-control" asp-items="ViewBag.Categorias"></select>
+                        <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" asp-for="IsLanchePreferido">
+                        <label class="form-check-label" asp-for="IsLanchePreferido">Lanche Preferido</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" asp-for="EmEstoque">
+                        <label class="form-check-label" asp-for="EmEstoque">Em Estoque</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-form-actions">
+            <input type="submit" value="Salvar Alterações" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>

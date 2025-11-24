@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PitsLanches.Models.Pedido>
+@{
+    ViewData["Title"] = "Relatório de Vendas";
+}
+
+<div class="admin-page-header">
+    <h1>Relatório de Vendas</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left-circle me-2"></i> Voltar
+    </a>
+</div>
+
+<div class="admin-summary-container">
+    <div class="summary-stat-card">
+        <div class="stat-icon pedidos"><i class="bi bi-journal-text"></i></div>
+        <div class="stat-info">
+            <div class="stat-title">Total de Pedidos</div>
+            <div class="stat-value">@Model.Count()</div>
+        </div>
+    </div>
+    <div class="summary-stat-card">
+        <div class="stat-icon lanches"><i class="bi bi-hdd-stack-fill"></i></div>
+        <div class="stat-info">
+            <div class="stat-title">Total de Itens Vendidos</div>
+            <div class="stat-value">@Model.Sum(obj => obj.TotalItensPedido)</div>
+        </div>
+    </div>
+    <div class="summary-stat-card">
+        <div class="stat-icon valor"><i class="bi bi-cash-coin"></i></div>
+        <div class="stat-info">
+            <div class="stat-title">Valor Total</div>
+            <div class="stat-value">@Model.Sum(obj => obj.PedidoTotal).ToString("c")</div>
+        </div>
+    </div>
+</div>
+
+<div class="admin-content-card">
+    @if (Model.Any())
+    {
+        <table class="table-admin">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.PedidoId)</th>
+                    <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>Itens</th>
+                    <th>@Html.DisplayNameFor(model => model.PedidoTotal)</th>
+                    <th>Data da Entrega</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><strong>#@item.PedidoId</strong></td>
+                        <td>@item.Nome</td>
+                        <td>@item.Email</td>
+                        <td>@item.TotalItensPedido</td>
+                        <td>@item.PedidoTotal.ToString("c")</td>
+                        <td>@item.PedidoEntregueEm?.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="admin-empty-state">
+            <i class="bi bi-bar-chart-line-fill"></i>
+            <h4>Nenhum Pedido Encontrado</h4>
+            <p class="text-muted">Não há pedidos que correspondam ao período de datas selecionado.</p>
+        </div>
+    }
+</div>

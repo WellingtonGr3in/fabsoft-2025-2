@@ -1,0 +1,46 @@
+﻿@model PitsLanches.ViewModels.PedidoLancheViewModel
+@{
+    ViewData["Title"] = "Itens do Pedido";
+    decimal totalPedido = Model.Pedido.PedidoItens.Sum(item => item.Quantidade * item.Lanche.Preco);
+}
+
+<div class="admin-page-header">
+    <h1>Itens do Pedido #@Model.Pedido.PedidoId</h1>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left-circle me-2"></i> Voltar para Pedidos
+    </a>
+</div>
+
+<div class="admin-content-card">
+    <div class="admin-pedido-summary">
+        <dl class="row mb-0">
+            <dt class="col-sm-2">Cliente:</dt>
+            <dd class="col-sm-4">@Model.Pedido.Nome</dd>
+            <dt class="col-sm-2">Data do Pedido:</dt>
+            <dd class="col-sm-4">@Model.Pedido.PedidoEnviado.ToString("g")</dd>
+            <dt class="col-sm-2">Data da Entrega:</dt>
+            <dd class="col-sm-4">@(Model.Pedido.PedidoEntregueEm?.ToString("g") ?? "Pendente")</dd>
+        </dl>
+    </div>
+
+    <h4>Itens</h4>
+    <hr />
+
+    @foreach (var item in Model.Pedido.PedidoItens)
+    {
+        <div class="admin-pedido-item">
+            <img src="@item.Lanche.ImagemURL" alt="@item.Lanche.Nome" />
+            <div class="info">
+                <strong>@item.Lanche.Nome</strong>
+                <span class="text-muted">@item.Quantidade x @item.Lanche.Preco.ToString("c")</span>
+            </div>
+            <div class="preco-final">
+                @((item.Quantidade * item.Lanche.Preco).ToString("c"))
+            </div>
+        </div>
+    }
+
+    <div class="admin-pedido-total">
+        Total do Pedido: <span>@totalPedido.ToString("C2")</span>
+    </div>
+</div>
