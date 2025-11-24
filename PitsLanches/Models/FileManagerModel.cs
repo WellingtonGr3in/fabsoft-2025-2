@@ -1,4 +1,4 @@
-﻿namespace LanchesMac.Models
+﻿namespace PitsLanches.Models
 {
     public class FileManagerModel
     {
