@@ -23,7 +23,6 @@ Repositorio de desenvolvimento: https://github.com/WellingtonGrein/PitsLanchesPc
 * RF13 - Histórico de Pedidos
 * RF14 - Geração de Relatório de Vendas
 * RF15 - Gestão de Estoque
-* RF16 - Administração de Usuários
 
       
 ## Histórias de usuário
