@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using LanchesMac.Models;
 
 
 namespace PitsLanches.Areas.Admin.Controllers
